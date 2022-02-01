@@ -1,0 +1,23 @@
+{
+  "name": "@template-nft/monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "frontend:build": "yarn workspace @template-nft/frontend build",
+    "frontend:eject": "yarn workspace @template-nft/frontend eject",
+    "frontend:start": "yarn workspace @template-nft/frontend start",
+    "frontend:test": "yarn workspace @template-nft/frontend test",
+    "start": "yarn workspace @template-nft/frontend start",
+    "build": "yarn workspace @template-nft/frontend build",
+    "compile": "yarn workspace @template-nft/hardhat compile",
+    "test": "yarn workspace @template-nft/hardhat test",
+    "deploy": "yarn workspace @template-nft/hardhat deploy",
+    "coverage": "yarn workspace @template-nft/hardhat coverage",
+    "etherscan-verify": "yarn workspace @template-nft/hardhat etherscan-verify",
+    "frontend": "yarn workspace @template-nft/frontend",
+    "hardhat": "yarn workspace @template-nft/hardhat hardhat"
+  }
+}
