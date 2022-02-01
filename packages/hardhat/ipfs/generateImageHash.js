@@ -11,18 +11,18 @@ const addOptions = {
 const partSize = 25
 const fileNames = fs.readdirSync('./images', 'utf-8')
 const folderNumber = Math.ceil(fileNames.length/partSize)  
-// console.log(folderNumber)
-// for(let i = 0; i < folderNumber; ++i){
-//     if(!existsSync(`image-part-${i}`)){
-//         mkdirSync(`image-part-${i}`)
-//     }
-//     const part = fileNames.slice(i*partSize,(i+1)*partSize)
-//     for(let file of part){
-//         fs.copyFileSync(`./images/${file}`, `image-part-${i}/${file}`)
-//     }
-//     console.log(chalk.green(`Finish copy part-${i}`))
-// }
-for(let i = 173 ; i < folderNumber;++i){
+
+for(let i = 0; i < folderNumber; ++i){
+    if(!existsSync(`image-part-${i}`)){
+        mkdirSync(`image-part-${i}`)
+    }
+    const part = fileNames.slice(i*partSize,(i+1)*partSize)
+    for(let file of part){
+        fs.copyFileSync(`./images/${file}`, `image-part-${i}/${file}`)
+    }
+    console.log(chalk.green(`Finish copy part-${i}`))
+}
+for(let i = 0 ; i < folderNumber;++i){
     const list = []
     
     for await (const file of ipfs.addAll(globSource(`image-part-${i}`, '**/*'), addOptions)) {
