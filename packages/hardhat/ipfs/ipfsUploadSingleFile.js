@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import fs from 'fs'
 const ipfs = create({ url: 'https://ipfs.infura.io:5001/api/v0' })
 const file = process.argv[2];
-const buffer = fs.readFileSync(`./images/${file}`)
+const buffer = fs.readFileSync(`./assets/${file}`)
 const {cid} = await ipfs.add(buffer,{
     pin: true,
 })

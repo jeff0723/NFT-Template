@@ -11,7 +11,7 @@ const addOptions = {
 const partSize = 25
 const fileNames = fs.readdirSync('./images', 'utf-8')
 const folderNumber = Math.ceil(fileNames.length/partSize)  
-
+// this is to prevent uploading folder exist http request limit
 for(let i = 0; i < folderNumber; ++i){
     if(!existsSync(`image-part-${i}`)){
         mkdirSync(`image-part-${i}`)
@@ -43,3 +43,8 @@ for(let i = 0 ; i < folderNumber;++i){
     console.log(chalk.blue(`finish writing part-${i}`))
 }
 console.log(chalk.green('successfully generate image hash!'))
+
+for(let i = 0; i < folderNumber; ++i){
+    fs.rmSync(`image-part-${i}`, { recursive: true });
+    console.log(chalk.green(`Removed image-part-${i}`))
+}

@@ -1,20 +1,18 @@
-### This is a ipfs upload script.
+# This is a ipfs upload script.
 
 ## These scripts can be used in two scenarios:
 
 1. Create unrevealed blindbox metadata
 2. Create revealed blindbox metadata
 
-# For 1. follow the below instructions:
+### For 1. follow the below instructions:
 
-1. Upload a image and get the cid of image
-2. Add this cid("ipfs://<cid>") into the `generateUnrevealedMetadata.js`
-3. `node generateUnrevealedMetadata.js` and it will generate a folder called `unrevealed`
-4. `node ipfsUploadFolder unrevealed` and it will upload the `unrevealed` folder to ipfs, then we record the printed cid.
+1. Copy your unrevealed image to asset 
+2. type ```bash uploadUnrevealed.sh <image_name> <metadata_amount> <metadata_name>```, example: ```bash uploadUnrevealed.sh 1.jpg 10 TEST```
+3. After you ran the commnad, the ipfs cid will be in ```unrevealed_cid.txt```
 
-# For 2.follow the below instructions:
+### For 2.follow the below instructions:
 
-1. copy paste your generated image and metadata into root directory with named `images` and `metadata`
-2. `node generateImageHash` to gereate your image cid for each image.
-3. `node fill.js` to fill in your image cid to metadata and generate a folder called `newMetadata`
-4. `node ipfsUploadFolder newMetadata` and it will upload the `newMetadata` folder to ipfs, then we record the printed cid.
+1. copy paste your generated image and metadata into root directory with name `images` and `metadata`
+2. ```bash uploadRevealed.sh```
+3. After you ran the commnad, the ipfs cid will be in ```revealed_cid.txt```
