@@ -3,7 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/hardhat/ipfs"
   ],
   "scripts": {
     "frontend:build": "yarn workspace @template-nft/frontend build",
