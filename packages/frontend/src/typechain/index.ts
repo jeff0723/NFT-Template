@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { Ownable } from "./Ownable";
+export type { PaymentSplitter } from "./PaymentSplitter";
+export type { IERC20 } from "./IERC20";
 export type { IERC721Enumerable } from "./IERC721Enumerable";
 export type { IERC721Metadata } from "./IERC721Metadata";
 export type { IERC721 } from "./IERC721";
@@ -12,6 +14,8 @@ export type { ERC721A } from "./ERC721A";
 export type { TemplateNFT } from "./TemplateNFT";
 
 export { Ownable__factory } from "./factories/Ownable__factory";
+export { PaymentSplitter__factory } from "./factories/PaymentSplitter__factory";
+export { IERC20__factory } from "./factories/IERC20__factory";
 export { IERC721Enumerable__factory } from "./factories/IERC721Enumerable__factory";
 export { IERC721Metadata__factory } from "./factories/IERC721Metadata__factory";
 export { IERC721__factory } from "./factories/IERC721__factory";

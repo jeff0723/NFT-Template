@@ -4,11 +4,17 @@ import { ethers, deployments, network, getChainId } from "hardhat";
 import { TemplateNFT__factory } from '../../frontend/src/typechain'
 import { 
   StageInfo, VOUCHER_TYPE, NFTVoucher,
+  getTimestamp,
   INIT_BASE_URI,
-  STAGE_1_PRICE, STAGE_1_START, STAGE_1_END,
-  STAGE_2_PRICE, STAGE_2_START, STAGE_2_END,
+  STAGE_1_PRICE,
+  STAGE_2_PRICE,
   FINAL_BASE_URI,
 } from "../constant";
+
+const STAGE_1_START = getTimestamp(new Date()) + 86400;
+const STAGE_1_END = STAGE_1_START + 86400*3;
+const STAGE_2_START = STAGE_1_END + 300;
+const STAGE_2_END = getTimestamp(new Date(2100, 0, 1));
 
 describe("Template NFT", function () {
   it("Simple flow", async function () {
@@ -47,6 +53,7 @@ describe("Template NFT", function () {
       redeemer: user0.address,
       stageId: 1,
       amount: 2,
+      nonce: 1,
     };
     const signatureForUser0 = await owner._signTypedData(domainData, VOUCHER_TYPE, voucher0);    
     tx = await contract.connect(user0).whitelistMint(voucher0, signatureForUser0, 2, { value: STAGE_1_PRICE.mul(2) })
@@ -61,6 +68,7 @@ describe("Template NFT", function () {
       redeemer: user1.address,
       stageId: 1,
       amount: 8,
+      nonce: 1,
     };
     await expect(contract.connect(user1).whitelistMint(voucher0, signatureForUser0, 2, { value: STAGE_1_PRICE.mul(2) }))
     .to.be.revertedWith("invalid or unauthorized");
@@ -141,11 +149,11 @@ describe("Template NFT", function () {
     tx = await contract.nextStage(stage2Info);
     await tx.wait();
 
-    // await expect(contract.connect(user0).publicMint(2, { value: STAGE_2_PRICE.mul(2) }))
-    // .to.be.revertedWith("Sale not started");
+    await expect(contract.connect(user0).publicMint(2, { value: STAGE_2_PRICE.mul(2) }))
+    .to.be.revertedWith("Sale not started");
 
-    // await network.provider.send("evm_setNextBlockTimestamp", [STAGE_2_START]);
-    // await network.provider.send("evm_mine");
+    await network.provider.send("evm_setNextBlockTimestamp", [STAGE_2_START]);
+    await network.provider.send("evm_mine");
 
     tx = await contract.connect(user0).publicMint(2, { value: STAGE_2_PRICE.mul(2) })
     await tx.wait();
@@ -168,9 +176,9 @@ describe("Template NFT", function () {
     const totalEarn = stage1Earn.add(STAGE_2_PRICE.mul(3));
     assert((await owner.provider.getBalance(contract.address)).eq(totalEarn));
     const ownerBalanceBefore = await owner.getBalance();
-    await expect(contract.connect(user3).withdraw())
+    await expect(contract.connect(user3)["release(address)"](user3.address))
     .to.be.revertedWith("Ownable: caller is not the owner");
-    tx = await contract.withdraw();
+    tx = await contract["release(address)"](owner.address);
     const receipt = await tx.wait();
     if (receipt.status === 1) {
       const gasFee = receipt.gasUsed.mul(receipt.effectiveGasPrice);

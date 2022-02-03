@@ -31,23 +31,28 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
     "nextStage((uint8,uint16,uint32,uint32,uint160))": FunctionFragment;
     "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
+    "payee(uint256)": FunctionFragment;
     "publicMint(uint8)": FunctionFragment;
+    "release(address)": FunctionFragment;
+    "released(address,address)": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "reserve(address,uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
     "setBaseURI(string)": FunctionFragment;
+    "shares(address)": FunctionFragment;
     "stageInfo()": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
     "tokenByIndex(uint256)": FunctionFragment;
     "tokenOfOwnerByIndex(address,uint256)": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
+    "totalReleased(address)": FunctionFragment;
+    "totalShares()": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
-    "whitelistMint((address,uint8,uint8),bytes,uint8)": FunctionFragment;
-    "withdraw()": FunctionFragment;
+    "whitelistMint((address,uint8,uint8,uint8),bytes,uint8)": FunctionFragment;
   };
 
   encodeFunctionData(
@@ -85,9 +90,15 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
     functionFragment: "ownerOf",
     values: [BigNumberish]
   ): string;
+  encodeFunctionData(functionFragment: "payee", values: [BigNumberish]): string;
   encodeFunctionData(
     functionFragment: "publicMint",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(functionFragment: "release", values: [string]): string;
+  encodeFunctionData(
+    functionFragment: "released",
+    values: [string, string]
   ): string;
   encodeFunctionData(
     functionFragment: "renounceOwnership",
@@ -106,6 +117,7 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
     values: [string, boolean]
   ): string;
   encodeFunctionData(functionFragment: "setBaseURI", values: [string]): string;
+  encodeFunctionData(functionFragment: "shares", values: [string]): string;
   encodeFunctionData(functionFragment: "stageInfo", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "supportsInterface",
@@ -125,6 +137,14 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
+    functionFragment: "totalReleased",
+    values: [string]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "totalShares",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "totalSupply",
     values?: undefined
   ): string;
@@ -139,12 +159,16 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "whitelistMint",
     values: [
-      { redeemer: string; stageId: BigNumberish; amount: BigNumberish },
+      {
+        redeemer: string;
+        stageId: BigNumberish;
+        amount: BigNumberish;
+        nonce: BigNumberish;
+      },
       BytesLike,
       BigNumberish
     ]
   ): string;
-  encodeFunctionData(functionFragment: "withdraw", values?: undefined): string;
 
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
@@ -164,7 +188,10 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "nextStage", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "payee", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "publicMint", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "release", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "released", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership",
     data: BytesLike
@@ -179,6 +206,7 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "setBaseURI", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "shares", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "stageInfo", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "supportsInterface",
@@ -195,6 +223,14 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "totalReleased",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "totalShares",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "totalSupply",
     data: BytesLike
   ): Result;
@@ -210,18 +246,25 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
     functionFragment: "whitelistMint",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
 
   events: {
     "Approval(address,address,uint256)": EventFragment;
     "ApprovalForAll(address,address,bool)": EventFragment;
+    "ERC20PaymentReleased(address,address,uint256)": EventFragment;
     "OwnershipTransferred(address,address)": EventFragment;
+    "PayeeAdded(address,uint256)": EventFragment;
+    "PaymentReceived(address,uint256)": EventFragment;
+    "PaymentReleased(address,uint256)": EventFragment;
     "Transfer(address,address,uint256)": EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: "Approval"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ApprovalForAll"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ERC20PaymentReleased"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "PayeeAdded"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "PaymentReceived"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "PaymentReleased"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
 }
 
@@ -241,8 +284,24 @@ export type ApprovalForAllEvent = TypedEvent<
   }
 >;
 
+export type ERC20PaymentReleasedEvent = TypedEvent<
+  [string, string, BigNumber] & { token: string; to: string; amount: BigNumber }
+>;
+
 export type OwnershipTransferredEvent = TypedEvent<
   [string, string] & { previousOwner: string; newOwner: string }
+>;
+
+export type PayeeAddedEvent = TypedEvent<
+  [string, BigNumber] & { account: string; shares: BigNumber }
+>;
+
+export type PaymentReceivedEvent = TypedEvent<
+  [string, BigNumber] & { from: string; amount: BigNumber }
+>;
+
+export type PaymentReleasedEvent = TypedEvent<
+  [string, BigNumber] & { to: string; amount: BigNumber }
 >;
 
 export type TransferEvent = TypedEvent<
@@ -334,10 +393,34 @@ export class TemplateNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    payee(index: BigNumberish, overrides?: CallOverrides): Promise<[string]>;
+
     publicMint(
       amount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
+
+    "release(address)"(
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "release(address,address)"(
+      token: string,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    "released(address,address)"(
+      token: string,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    "released(address)"(
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
     renounceOwnership(
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -375,6 +458,8 @@ export class TemplateNFT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    shares(account: string, overrides?: CallOverrides): Promise<[BigNumber]>;
+
     stageInfo(
       overrides?: CallOverrides
     ): Promise<
@@ -410,6 +495,15 @@ export class TemplateNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    "totalReleased(address)"(
+      token: string,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    "totalReleased()"(overrides?: CallOverrides): Promise<[BigNumber]>;
+
+    totalShares(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     transferFrom(
@@ -429,14 +523,11 @@ export class TemplateNFT extends BaseContract {
         redeemer: string;
         stageId: BigNumberish;
         amount: BigNumberish;
+        nonce: BigNumberish;
       },
       signature: BytesLike,
       amount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
-
-    withdraw(
-      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
   };
 
@@ -478,10 +569,34 @@ export class TemplateNFT extends BaseContract {
 
   ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
+  payee(index: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
   publicMint(
     amount: BigNumberish,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
+
+  "release(address)"(
+    account: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "release(address,address)"(
+    token: string,
+    account: string,
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  "released(address,address)"(
+    token: string,
+    account: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "released(address)"(
+    account: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
   renounceOwnership(
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -519,6 +634,8 @@ export class TemplateNFT extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  shares(account: string, overrides?: CallOverrides): Promise<BigNumber>;
+
   stageInfo(
     overrides?: CallOverrides
   ): Promise<
@@ -551,6 +668,15 @@ export class TemplateNFT extends BaseContract {
 
   tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
+  "totalReleased(address)"(
+    token: string,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
+  "totalReleased()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+  totalShares(overrides?: CallOverrides): Promise<BigNumber>;
+
   totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
   transferFrom(
@@ -566,14 +692,15 @@ export class TemplateNFT extends BaseContract {
   ): Promise<ContractTransaction>;
 
   whitelistMint(
-    voucher: { redeemer: string; stageId: BigNumberish; amount: BigNumberish },
+    voucher: {
+      redeemer: string;
+      stageId: BigNumberish;
+      amount: BigNumberish;
+      nonce: BigNumberish;
+    },
     signature: BytesLike,
     amount: BigNumberish,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
-
-  withdraw(
-    overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -615,7 +742,31 @@ export class TemplateNFT extends BaseContract {
 
     ownerOf(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
+    payee(index: BigNumberish, overrides?: CallOverrides): Promise<string>;
+
     publicMint(amount: BigNumberish, overrides?: CallOverrides): Promise<void>;
+
+    "release(address)"(
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "release(address,address)"(
+      token: string,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    "released(address,address)"(
+      token: string,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "released(address)"(
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
@@ -647,6 +798,8 @@ export class TemplateNFT extends BaseContract {
     ): Promise<void>;
 
     setBaseURI(baseURI: string, overrides?: CallOverrides): Promise<void>;
+
+    shares(account: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     stageInfo(
       overrides?: CallOverrides
@@ -680,6 +833,15 @@ export class TemplateNFT extends BaseContract {
 
     tokenURI(tokenId: BigNumberish, overrides?: CallOverrides): Promise<string>;
 
+    "totalReleased(address)"(
+      token: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "totalReleased()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    totalShares(overrides?: CallOverrides): Promise<BigNumber>;
+
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
@@ -699,13 +861,12 @@ export class TemplateNFT extends BaseContract {
         redeemer: string;
         stageId: BigNumberish;
         amount: BigNumberish;
+        nonce: BigNumberish;
       },
       signature: BytesLike,
       amount: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
-
-    withdraw(overrides?: CallOverrides): Promise<void>;
   };
 
   filters: {
@@ -745,6 +906,24 @@ export class TemplateNFT extends BaseContract {
       { owner: string; operator: string; approved: boolean }
     >;
 
+    "ERC20PaymentReleased(address,address,uint256)"(
+      token?: string | null,
+      to?: null,
+      amount?: null
+    ): TypedEventFilter<
+      [string, string, BigNumber],
+      { token: string; to: string; amount: BigNumber }
+    >;
+
+    ERC20PaymentReleased(
+      token?: string | null,
+      to?: null,
+      amount?: null
+    ): TypedEventFilter<
+      [string, string, BigNumber],
+      { token: string; to: string; amount: BigNumber }
+    >;
+
     "OwnershipTransferred(address,address)"(
       previousOwner?: string | null,
       newOwner?: string | null
@@ -760,6 +939,48 @@ export class TemplateNFT extends BaseContract {
       [string, string],
       { previousOwner: string; newOwner: string }
     >;
+
+    "PayeeAdded(address,uint256)"(
+      account?: null,
+      shares?: null
+    ): TypedEventFilter<
+      [string, BigNumber],
+      { account: string; shares: BigNumber }
+    >;
+
+    PayeeAdded(
+      account?: null,
+      shares?: null
+    ): TypedEventFilter<
+      [string, BigNumber],
+      { account: string; shares: BigNumber }
+    >;
+
+    "PaymentReceived(address,uint256)"(
+      from?: null,
+      amount?: null
+    ): TypedEventFilter<
+      [string, BigNumber],
+      { from: string; amount: BigNumber }
+    >;
+
+    PaymentReceived(
+      from?: null,
+      amount?: null
+    ): TypedEventFilter<
+      [string, BigNumber],
+      { from: string; amount: BigNumber }
+    >;
+
+    "PaymentReleased(address,uint256)"(
+      to?: null,
+      amount?: null
+    ): TypedEventFilter<[string, BigNumber], { to: string; amount: BigNumber }>;
+
+    PaymentReleased(
+      to?: null,
+      amount?: null
+    ): TypedEventFilter<[string, BigNumber], { to: string; amount: BigNumber }>;
 
     "Transfer(address,address,uint256)"(
       from?: string | null,
@@ -822,9 +1043,33 @@ export class TemplateNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    payee(index: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
+
     publicMint(
       amount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "release(address)"(
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "release(address,address)"(
+      token: string,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    "released(address,address)"(
+      token: string,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "released(address)"(
+      account: string,
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     renounceOwnership(
@@ -863,6 +1108,8 @@ export class TemplateNFT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    shares(account: string, overrides?: CallOverrides): Promise<BigNumber>;
+
     stageInfo(overrides?: CallOverrides): Promise<BigNumber>;
 
     supportsInterface(
@@ -888,6 +1135,15 @@ export class TemplateNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    "totalReleased(address)"(
+      token: string,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "totalReleased()"(overrides?: CallOverrides): Promise<BigNumber>;
+
+    totalShares(overrides?: CallOverrides): Promise<BigNumber>;
+
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     transferFrom(
@@ -907,14 +1163,11 @@ export class TemplateNFT extends BaseContract {
         redeemer: string;
         stageId: BigNumberish;
         amount: BigNumberish;
+        nonce: BigNumberish;
       },
       signature: BytesLike,
       amount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    withdraw(
-      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
   };
 
@@ -965,9 +1218,36 @@ export class TemplateNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    payee(
+      index: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     publicMint(
       amount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "release(address)"(
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "release(address,address)"(
+      token: string,
+      account: string,
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    "released(address,address)"(
+      token: string,
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "released(address)"(
+      account: string,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     renounceOwnership(
@@ -1006,6 +1286,11 @@ export class TemplateNFT extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    shares(
+      account: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     stageInfo(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     supportsInterface(
@@ -1031,6 +1316,15 @@ export class TemplateNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    "totalReleased(address)"(
+      token: string,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "totalReleased()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    totalShares(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transferFrom(
@@ -1050,14 +1344,11 @@ export class TemplateNFT extends BaseContract {
         redeemer: string;
         stageId: BigNumberish;
         amount: BigNumberish;
+        nonce: BigNumberish;
       },
       signature: BytesLike,
       amount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    withdraw(
-      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };
 }

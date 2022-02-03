@@ -1,14 +1,15 @@
 import { BigNumber, utils } from "ethers";
 import { TypedDataField } from "@ethersproject/abstract-signer";
 
-function getTimestamp(date: Date) : number {
-    return BigNumber.from(date.getTime()).div(1000).toNumber();
+export function getTimestamp(date: Date) : number {
+    return BigNumber.from(date.valueOf()).div(1000).toNumber();
 }
 
 export type NFTVoucher = {
     redeemer: string;
     stageId: number;
     amount: number;
+    nonce: number;
 };
 
 export type StageInfo = {
@@ -23,7 +24,8 @@ export const VOUCHER_TYPE: Record<string, TypedDataField[]> = {
     NFTVoucher: [
       { name: "redeemer", type: "address" },
       { name: "stageId", type: "uint8" },
-      { name: "amount", type: "uint8" }, 
+      { name: "amount", type: "uint8" },
+      { name: "nonce", type: "uint8" }
     ]
 };
 
@@ -48,7 +50,7 @@ export const FINAL_BASE_URI
 
 type AddressMap = { [chainId: string]: string };
 export const CONTRACT_ADDRESS: AddressMap = {
-    '1': '0xE3FeB315Ae49491900e34763d7d5aEcc4277D843',
-    '4': '0x447ef5CD74Cbdb1a2835d84AbD6e99020E420732',
+    '1': 'TBD',
+    '4': 'TBD',
     '1337': '0x5FbDB2315678afecb367f032d93F642f64180aa3',
 }   

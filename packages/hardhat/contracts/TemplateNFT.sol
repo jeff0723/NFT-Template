@@ -1,25 +1,18 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 pragma abicoder v2; // required to accept structs as function parameters
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import "@openzeppelin/contracts/utils/cryptography/draft-EIP712.sol";
+import "@openzeppelin/contracts/finance/PaymentSplitter.sol";
 import "./ERC721A.sol";
-
-//////////////////////////////////////////////////////
-//                                                  //
-// We are Rebirth Lab.                              //
-// Let us help you with your next NFT Project.      //
-// jeffreylin0723@gmail.com                         //
-//                                                  //
-//////////////////////////////////////////////////////
 
 /**
  @title Template NFT 
  @author Jeffrey Lin, Justa Liang
  */
-contract TemplateNFT is ERC721A, Ownable, EIP712 {
+contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
     using Address for address;
 
     // Stage info (packed)
@@ -33,17 +26,18 @@ contract TemplateNFT is ERC721A, Ownable, EIP712 {
     StageInfo public stageInfo;
 
     // Maximum limit of tokens that can ever exist
-    uint16 constant MAX_SUPPLY = 10000;
+    uint16 immutable MAX_SUPPLY;
 
-    // Maximum limit of mint amount per time
-    uint8 constant MAX_MINT_PER_TIME = 2;
+    // Public mint stage
+    uint8 immutable PUBLIC_MINT_STAGE;
 
     // The base link that leads to the image / video of the token
     string private _baseTokenURI;
 
     struct MinterInfo {
         uint8 stageId;
-        uint8 remain;
+        uint8 nonce;
+        uint240 remain;
     }
     // Stage ID check
     mapping(address => MinterInfo) private _whitelistInfo;
@@ -53,13 +47,26 @@ contract TemplateNFT is ERC721A, Ownable, EIP712 {
         address redeemer; // specify user to redeem this voucher
         uint8 stageId; // ID to check if voucher has been redeemed
         uint8 amount; // max amount to mint in stage
+        uint8 nonce; // to make voucher differ from previous
     }
 
     /// @dev Setup ERC721A, EIP712 and first stage info
-    constructor(StageInfo memory _initStageInfo, string memory _initBaseURI)
-        ERC721A("TemplateNFT", "TEMP", 100)
-        EIP712("TemplateNFT-Voucher", "1")
+    constructor(
+        string memory name,
+        string memory symbol,
+        address[] memory payees,
+        uint256[] memory shares,
+        uint16 maxSupply,
+        uint8 publicMintStage,
+        StageInfo memory _initStageInfo,
+        string memory _initBaseURI
+    )
+        ERC721A(name, symbol, 5) // better not exceed 5 to show up on opensea
+        EIP712(name, "1")
+        PaymentSplitter(payees, shares)
     {
+        MAX_SUPPLY = maxSupply;
+        PUBLIC_MINT_STAGE = publicMintStage;
         _baseTokenURI = _initBaseURI;
         stageInfo = _initStageInfo;
     }
@@ -72,14 +79,14 @@ contract TemplateNFT is ERC721A, Ownable, EIP712 {
     ) external payable {
         MinterInfo storage minterInfo = _whitelistInfo[_msgSender()];
         // if haven't redeemed then redeem first
-        if (minterInfo.stageId < stageInfo.stageId) {
+        if (voucher.nonce > minterInfo.nonce) {
             // make sure that the signer is authorized to mint NFTs
             _verify(voucher, signature);
             // check current stage
             require(voucher.stageId == stageInfo.stageId, "Wrong stage");
             // update minter info
             minterInfo.stageId = voucher.stageId;
-            minterInfo.remain = voucher.amount;
+            minterInfo.remain += voucher.amount;
         }
 
         // check time
@@ -100,13 +107,14 @@ contract TemplateNFT is ERC721A, Ownable, EIP712 {
 
     /// @notice Public mint
     function publicMint(uint8 amount) external payable {
-        // check public mint stage (stage ID: 3)
-        require(stageInfo.stageId == 3, "Public mint not started");
+        // check public mint stage
+        require(
+            stageInfo.stageId == PUBLIC_MINT_STAGE,
+            "Public mint not started"
+        );
         // check time
         require(block.timestamp >= stageInfo.startTime, "Sale not started");
         require(block.timestamp <= stageInfo.endTime, "Sale already ended");
-        // check if exceed max per time
-        require(amount <= MAX_MINT_PER_TIME, "Exceed max mint amount");
         // check if exceed total supply
         require(totalSupply() + amount <= MAX_SUPPLY, "Exceed total supply");
         // check fund
@@ -151,13 +159,11 @@ contract TemplateNFT is ERC721A, Ownable, EIP712 {
             "Cannot set to previous stage"
         );
         require(_stageInfo.maxSupply <= MAX_SUPPLY, "Set exceed max supply");
-        require(_stageInfo.stageId <= 3, "Can only have three stage");
+        require(
+            _stageInfo.stageId <= PUBLIC_MINT_STAGE,
+            "Public mint should be last stage"
+        );
         stageInfo = _stageInfo;
-    }
-
-    /// @dev Withdraw all funds from contract to owner
-    function withdraw() external onlyOwner {
-        Address.sendValue(payable(owner()), address(this).balance);
     }
 
     /// @dev Set new baseURI
