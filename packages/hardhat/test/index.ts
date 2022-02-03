@@ -51,11 +51,10 @@ describe("Template NFT", function () {
     // sign voucher #0
     const voucher0: NFTVoucher = {
       redeemer: user0.address,
-      stageId: 1,
-      amount: 2,
       nonce: 1,
+      amount: 2,
     };
-    const signatureForUser0 = await owner._signTypedData(domainData, VOUCHER_TYPE, voucher0);    
+    const signatureForUser0 = await owner._signTypedData(domainData, VOUCHER_TYPE, voucher0);
     tx = await contract.connect(user0).whitelistMint(voucher0, signatureForUser0, 2, { value: STAGE_1_PRICE.mul(2) })
     await tx.wait();
     assert((await contract.balanceOf(user0.address)).eq(2));
@@ -66,9 +65,8 @@ describe("Template NFT", function () {
     // sign voucher #1
     const voucher1: NFTVoucher = {
       redeemer: user1.address,
-      stageId: 1,
-      amount: 8,
       nonce: 1,
+      amount: 8,
     };
     await expect(contract.connect(user1).whitelistMint(voucher0, signatureForUser0, 2, { value: STAGE_1_PRICE.mul(2) }))
     .to.be.revertedWith("invalid or unauthorized");

@@ -35,9 +35,8 @@ contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
     string private _baseTokenURI;
 
     struct MinterInfo {
-        uint8 stageId;
         uint8 nonce;
-        uint240 remain;
+        uint248 remain;
     }
     // Stage ID check
     mapping(address => MinterInfo) private _whitelistInfo;
@@ -45,9 +44,8 @@ contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
     // voucher for user to redeem
     struct NFTVoucher {
         address redeemer; // specify user to redeem this voucher
-        uint8 stageId; // ID to check if voucher has been redeemed
-        uint8 amount; // max amount to mint in stage
         uint8 nonce; // to make voucher differ from previous
+        uint8 amount; // max amount to mint in stage
     }
 
     /// @dev Setup ERC721A, EIP712 and first stage info
@@ -82,10 +80,7 @@ contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
         if (voucher.nonce > minterInfo.nonce) {
             // make sure that the signer is authorized to mint NFTs
             _verify(voucher, signature);
-            // check current stage
-            require(voucher.stageId == stageInfo.stageId, "Wrong stage");
             // update minter info
-            minterInfo.stageId = voucher.stageId;
             minterInfo.remain += voucher.amount;
         }
 
@@ -132,10 +127,10 @@ contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
             keccak256(
                 abi.encode(
                     keccak256(
-                        "NFTVoucher(address redeemer,uint8 stageId,uint8 amount)"
+                        "NFTVoucher(address redeemer,uint8 nonce,uint8 amount)"
                     ),
                     _msgSender(),
-                    voucher.stageId,
+                    voucher.nonce,
                     voucher.amount
                 )
             )

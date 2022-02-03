@@ -52,7 +52,7 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
     "totalSupply()": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
-    "whitelistMint((address,uint8,uint8,uint8),bytes,uint8)": FunctionFragment;
+    "whitelistMint((address,uint8,uint8),bytes,uint8)": FunctionFragment;
   };
 
   encodeFunctionData(
@@ -159,12 +159,7 @@ interface TemplateNFTInterface extends ethers.utils.Interface {
   encodeFunctionData(
     functionFragment: "whitelistMint",
     values: [
-      {
-        redeemer: string;
-        stageId: BigNumberish;
-        amount: BigNumberish;
-        nonce: BigNumberish;
-      },
+      { redeemer: string; nonce: BigNumberish; amount: BigNumberish },
       BytesLike,
       BigNumberish
     ]
@@ -519,12 +514,7 @@ export class TemplateNFT extends BaseContract {
     ): Promise<ContractTransaction>;
 
     whitelistMint(
-      voucher: {
-        redeemer: string;
-        stageId: BigNumberish;
-        amount: BigNumberish;
-        nonce: BigNumberish;
-      },
+      voucher: { redeemer: string; nonce: BigNumberish; amount: BigNumberish },
       signature: BytesLike,
       amount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -692,12 +682,7 @@ export class TemplateNFT extends BaseContract {
   ): Promise<ContractTransaction>;
 
   whitelistMint(
-    voucher: {
-      redeemer: string;
-      stageId: BigNumberish;
-      amount: BigNumberish;
-      nonce: BigNumberish;
-    },
+    voucher: { redeemer: string; nonce: BigNumberish; amount: BigNumberish },
     signature: BytesLike,
     amount: BigNumberish,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -857,12 +842,7 @@ export class TemplateNFT extends BaseContract {
     ): Promise<void>;
 
     whitelistMint(
-      voucher: {
-        redeemer: string;
-        stageId: BigNumberish;
-        amount: BigNumberish;
-        nonce: BigNumberish;
-      },
+      voucher: { redeemer: string; nonce: BigNumberish; amount: BigNumberish },
       signature: BytesLike,
       amount: BigNumberish,
       overrides?: CallOverrides
@@ -1159,12 +1139,7 @@ export class TemplateNFT extends BaseContract {
     ): Promise<BigNumber>;
 
     whitelistMint(
-      voucher: {
-        redeemer: string;
-        stageId: BigNumberish;
-        amount: BigNumberish;
-        nonce: BigNumberish;
-      },
+      voucher: { redeemer: string; nonce: BigNumberish; amount: BigNumberish },
       signature: BytesLike,
       amount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -1340,12 +1315,7 @@ export class TemplateNFT extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     whitelistMint(
-      voucher: {
-        redeemer: string;
-        stageId: BigNumberish;
-        amount: BigNumberish;
-        nonce: BigNumberish;
-      },
+      voucher: { redeemer: string; nonce: BigNumberish; amount: BigNumberish },
       signature: BytesLike,
       amount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
