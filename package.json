@@ -16,7 +16,7 @@
     "compile": "yarn workspace @template-nft/hardhat compile",
     "test": "yarn workspace @template-nft/hardhat test",
     "deploy": "yarn workspace @template-nft/hardhat deploy",
-    "coverage": "yarn workspace @template-nft/hardhat coverage",
+    "coverage": "yarn workspace @template-nft/hardhat covefirage",
     "etherscan-verify": "yarn workspace @template-nft/hardhat etherscan-verify",
     "frontend": "yarn workspace @template-nft/frontend",
     "upload-unrevealed": "yarn workspace @template-nft/hardhat upload-unrevealed",
