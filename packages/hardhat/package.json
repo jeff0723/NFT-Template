@@ -45,7 +45,9 @@
     "test": "hardhat test",
     "deploy": "hardhat deploy",
     "etherscan-verify": "hardhat etherscan-verify",
-    "coverage": "hardhat converage"
+    "coverage": "hardhat converage",
+    "upload-unrevealed": "cd ipfs && bash uploadUnrevealed.sh",
+    "upload-revealed": "cd ipfs && bash uploadRevealed.sh"
   },
   "dependencies": {
     "node-fetch": "^3.1.0",

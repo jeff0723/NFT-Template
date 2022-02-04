@@ -19,6 +19,8 @@
     "coverage": "yarn workspace @template-nft/hardhat coverage",
     "etherscan-verify": "yarn workspace @template-nft/hardhat etherscan-verify",
     "frontend": "yarn workspace @template-nft/frontend",
+    "upload-unrevealed": "yarn workspace @template-nft/hardhat upload-unrevealed",
+    "upload-revealed": "yarn workspace @template-nft/hardhat upload-revealed",
     "hardhat": "yarn workspace @template-nft/hardhat hardhat"
   }
 }
