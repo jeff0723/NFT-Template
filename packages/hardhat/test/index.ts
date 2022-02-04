@@ -51,6 +51,7 @@ describe("Template NFT", function () {
     // sign voucher #0
     const voucher0: NFTVoucher = {
       redeemer: user0.address,
+      stageId: 1,
       nonce: 1,
       amount: 2,
     };
@@ -65,6 +66,7 @@ describe("Template NFT", function () {
     // sign voucher #1
     const voucher1: NFTVoucher = {
       redeemer: user1.address,
+      stageId: 1,
       nonce: 1,
       amount: 8,
     };

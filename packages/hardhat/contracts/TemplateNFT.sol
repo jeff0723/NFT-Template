@@ -44,6 +44,7 @@ contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
     // voucher for user to redeem
     struct NFTVoucher {
         address redeemer; // specify user to redeem this voucher
+        uint8 stageId; // voucher issued in which stage
         uint8 nonce; // to make voucher differ from previous
         uint8 amount; // max amount to mint in stage
     }
@@ -80,8 +81,10 @@ contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
         if (voucher.nonce > minterInfo.nonce) {
             // make sure that the signer is authorized to mint NFTs
             _verify(voucher, signature);
+            // check stage ID
+            require(stageInfo.stageId == voucher.stageId, "Stage ID not match");
             // update minter info
-            minterInfo.remain += voucher.amount;
+            minterInfo.remain = voucher.amount;
         }
 
         // check time
@@ -127,9 +130,10 @@ contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
             keccak256(
                 abi.encode(
                     keccak256(
-                        "NFTVoucher(address redeemer,uint8 nonce,uint8 amount)"
+                        "NFTVoucher(address redeemer,uint8 stageId,uint8 nonce,uint8 amount)"
                     ),
                     _msgSender(),
+                    voucher.stageId,
                     voucher.nonce,
                     voucher.amount
                 )

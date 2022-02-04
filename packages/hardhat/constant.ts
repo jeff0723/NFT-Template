@@ -7,6 +7,7 @@ export function getTimestamp(date: Date) : number {
 
 export type NFTVoucher = {
     redeemer: string;
+    stageId: number;
     nonce: number;
     amount: number;
 };
@@ -22,6 +23,7 @@ export type StageInfo = {
 export const VOUCHER_TYPE: Record<string, TypedDataField[]> = {
     NFTVoucher: [
       { name: "redeemer", type: "address" },
+      { name: "stageId", type: "uint8" },
       { name: "nonce", type: "uint8" },
       { name: "amount", type: "uint8" },
     ]

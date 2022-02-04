@@ -28,7 +28,7 @@ async function main() {
         const struct = list.split(' ');
         const redeemer = struct[0];
         const amount = parseInt(struct[1]);
-        const voucher: NFTVoucher = { redeemer, nonce: stageId, amount };
+        const voucher: NFTVoucher = { redeemer, stageId, nonce: stageId, amount };
         const signature: string = await signer._signTypedData(domainData, VOUCHER_TYPE, voucher);
         sigMap.set(redeemer, {voucher, signature});
         return signature;
