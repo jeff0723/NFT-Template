@@ -1,6 +1,7 @@
 import { TypedDataDomain } from "@ethersproject/abstract-signer";
 import { ethers, getNamedAccounts, getChainId } from "hardhat";
 import { writeFile, readFile } from "fs/promises";
+import { existsSync } from "fs";
 import { NFTVoucher, VOUCHER_TYPE, CONTRACT_ADDRESS } from "../constant";
 
 const stageId = 1;
@@ -34,7 +35,11 @@ async function main() {
         return signature;
     }));
     console.log("voucher count:", sigMap.size);
-    await writeFile("../../frontend/src/whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
+    if (existsSync("../frontend/src/whitelist/whitelist.json")) {
+        await writeFile("../frontend/src/whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
+    } else {
+        await writeFile("./whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
+    }
 
 
 }
