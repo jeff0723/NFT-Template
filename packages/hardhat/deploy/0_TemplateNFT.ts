@@ -22,12 +22,12 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const shdd = await deploy("TemplateNFT", {
     from: deployer,
     args: [
-      "TemplateNFT", // name
-      "TEMP", // symbol
+      process.env.NAME, // name
+      process.env.SYMBOL, // symbol
       [deployer], // payees
       [1], // shares
-      10000, // max supply
-      2, // public mint stage
+      process.env.MAX_SUPPLY, // max supply
+      process.env.PUBLIC_MINT_STAGE, // public mint stage
       stageInfo, // init stage info
       INIT_BASE_URI // init base URI
     ],

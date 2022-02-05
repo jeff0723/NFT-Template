@@ -51,7 +51,7 @@ const config: HardhatUserConfig = {
         chainId: 4,
     },
     mainnet: {
-      url: process.env.MUMBAI_URL || "",
+      url: process.env.MAINNET_URL || "",
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       chainId: 1,
