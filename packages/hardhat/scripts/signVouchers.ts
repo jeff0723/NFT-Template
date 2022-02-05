@@ -34,7 +34,9 @@ async function main() {
         return signature;
     }));
     console.log("voucher count:", sigMap.size);
-    await writeFile("./whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
+    await writeFile("../../frontend/src/whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
+
+
 }
   
 // We recommend this pattern to be able to use async/await everywhere
