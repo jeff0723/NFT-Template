@@ -19,7 +19,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     endTime,
     mintPrice,
   };
-  const shdd = await deploy("TemplateNFT", {
+  const nftContract = await deploy("TemplateNFT", {
     from: deployer,
     args: [
       process.env.NAME, // name
@@ -32,7 +32,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       INIT_BASE_URI // init base URI
     ],
   });
-  console.log("TemplateNFT deployed to:", shdd.address);
+  console.log("TemplateNFT deployed to:", nftContract.address);
 };
 export default func;
 func.tags = ["TemplateNFT"];
