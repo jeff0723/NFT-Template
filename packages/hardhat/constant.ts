@@ -36,7 +36,7 @@ export const STAGE_1_END = getTimestamp(new Date(2022, 2-1, 21, 1, 30));
 export const STAGE_1_PRICE = utils.parseEther("0.07");
 export const STAGE_1_SUPPLY = 6999;
 export const UNREVEALED_BASE_URI =
-    "ipfs://QmazRpZmrndNc59zCWeFV9oEXaYE8gSeMaAiQyDm14hL7y/";
+    "ipfs://QmSmy9woJEuEyA57o5cbVHYkF1RLibJfpQiJNqmfEtno6f/";
 
 // Stage #2 (public)
 export const STAGE_2_START = getTimestamp(new Date(2022, 2-1, 21, 1, 30));
@@ -46,7 +46,7 @@ export const STAGE_2_SUPPLY = 6999;
 
 // Settle
 export const FINAL_BASE_URI
-    = "ipfs://QmaMby3sqZ491rww2Tef3QK7E4McVsw4EUiXD4Ygo1Xiwu/"; //TODO
+    = "ipfs://QmQu2oEk2ZmeDFcoaJsCPSnFGPkoDUPWEyVhT6VRZSuxbz/"; //TODO
 
 type AddressMap = { [chainId: string]: string };
 export const CONTRACT_ADDRESS: AddressMap = {

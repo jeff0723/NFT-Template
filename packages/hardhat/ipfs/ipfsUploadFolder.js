@@ -6,4 +6,4 @@ const {cid} = await ipfs.add(globSource(`./${dir}`, '**/*'),{
     pin: true,
     wrapWithDirectory: true
 })
-console.log(chalk.green(`ipfs://${cid.toString()}`))
+console.log(chalk.green(`ipfs://${cid.toString()}/`))
