@@ -1,6 +1,6 @@
 import { DeployFunction } from "hardhat-deploy/types";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { getTimestamp, INIT_BASE_URI, StageInfo, STAGE_1_END, STAGE_1_PRICE, STAGE_1_START, STAGE_1_SUPPLY } from "../constant";
+import { getTimestamp, UNREVEALED_BASE_URI, StageInfo, STAGE_1_END, STAGE_1_PRICE, STAGE_1_START, STAGE_1_SUPPLY } from "../constant";
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deploy } = hre.deployments;
@@ -29,7 +29,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       process.env.MAX_SUPPLY, // max supply
       process.env.PUBLIC_MINT_STAGE, // public mint stage
       stageInfo, // init stage info
-      INIT_BASE_URI // init base URI
+      UNREVEALED_BASE_URI // init base URI
     ],
   });
   console.log("TemplateNFT deployed to:", nftContract.address);
