@@ -35,7 +35,7 @@ export const STAGE_1_START = getTimestamp(new Date(2022, 1-1, 30, 22, 30));
 export const STAGE_1_END = getTimestamp(new Date(2022, 2-1, 21, 1, 30));
 export const STAGE_1_PRICE = utils.parseEther("0.07");
 export const STAGE_1_SUPPLY = 6999;
-export const INIT_BASE_URI =
+export const UNREVEALED_BASE_URI =
     "ipfs://QmazRpZmrndNc59zCWeFV9oEXaYE8gSeMaAiQyDm14hL7y/";
 
 // Stage #2 (public)
