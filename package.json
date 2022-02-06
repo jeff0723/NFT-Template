@@ -21,6 +21,7 @@
     "frontend": "yarn workspace @template-nft/frontend",
     "upload-unrevealed": "yarn workspace @template-nft/hardhat upload-unrevealed",
     "upload-revealed": "yarn workspace @template-nft/hardhat upload-revealed",
+    "sign-whitelist": "yarn workspace @template-nft/hardhat sign-whitelist",
     "hardhat": "yarn workspace @template-nft/hardhat hardhat"
   }
 }

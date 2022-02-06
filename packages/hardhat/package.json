@@ -47,7 +47,8 @@
     "etherscan-verify": "hardhat etherscan-verify",
     "coverage": "hardhat converage",
     "upload-unrevealed": "cd ipfs && bash uploadUnrevealed.sh",
-    "upload-revealed": "cd ipfs && bash uploadRevealed.sh"
+    "upload-revealed": "cd ipfs && bash uploadRevealed.sh",
+    "sign-whitelist": "hardhat run scripts/signVouchers.ts"
   },
   "dependencies": {
     "node-fetch": "^3.1.0",

@@ -5,10 +5,10 @@ import { existsSync } from "fs";
 import { NFTVoucher, VOUCHER_TYPE, CONTRACT_ADDRESS } from "../constant";
 
 const stageId = 1;
-
+const nonce = 1;
 async function main() {
     const { deployer } = await getNamedAccounts();
-    console.log(deployer)
+    console.log("Singer address:",deployer)
     const signer = await ethers.getSigner(deployer);
     // domain data
     const chainId = await getChainId();
@@ -29,7 +29,7 @@ async function main() {
         const struct = list.split(' ');
         const redeemer = struct[0];
         const amount = parseInt(struct[1]);
-        const voucher: NFTVoucher = { redeemer, stageId, nonce: stageId, amount };
+        const voucher: NFTVoucher = { redeemer, stageId, nonce, amount };
         const signature: string = await signer._signTypedData(domainData, VOUCHER_TYPE, voucher);
         sigMap.set(redeemer, {voucher, signature});
         return signature;
