@@ -4,8 +4,44 @@
             "redeemer": "0x1BE55EE7E2e7E3ff9fA745f807a9FaCf50538a4d",
             "stageId": 1,
             "nonce": 1,
-            "amount": 10
+            "amount": 5
         },
-        "signature": "0xa7e73be6a466fff9c5d71e119da5c6f51a1c102edd4b0a933cad40293628fee05531edcec7e6ebe3f45700f9ac120a2b13e7dbec70e4c327d20c268d88a8040c1c"
+        "signature": "0xfca2072fca3b6877a1f883cd3b9abc6b6b185b04a4a36cdd115dbbe845e1c0c72d252ff2312cc3b43dfbc6f3019c1cd92480202bb0981635fd3873e04ff605d41b"
+    },
+    "0x8dA0F34A0819fE8dbD130050a4059859241dFEfd": {
+        "voucher": {
+            "redeemer": "0x8dA0F34A0819fE8dbD130050a4059859241dFEfd",
+            "stageId": 1,
+            "nonce": 1,
+            "amount": 3
+        },
+        "signature": "0x206ba05baeb4a68547c3f106948f53df886390fbaa614f68abc984c3dae848e177b5d4085cb16cb4d6401fe29d54a44765b01a32014ca2788a192800094bebbb1c"
+    },
+    "0xfA254Bc5fe638989BC4A86727293335093A6177e": {
+        "voucher": {
+            "redeemer": "0xfA254Bc5fe638989BC4A86727293335093A6177e",
+            "stageId": 1,
+            "nonce": 1,
+            "amount": 2
+        },
+        "signature": "0x834ddd4777f7cecc56598616f5f95932bce07a4106f307c98dc8077533dc5d090ebd6ff1a970eb573edf0fc50c3392e2e4f629c6685805333cf6a0d93aee06d71b"
+    },
+    "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266": {
+        "voucher": {
+            "redeemer": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+            "stageId": 1,
+            "nonce": 1,
+            "amount": 1
+        },
+        "signature": "0xf36e0e936af9713e93de5e0af6b7f7e4b8ed59b72821463daf4346db3d58f6c21ae57efc664bdd583ed3a51f32a5cacac4da20b868d7f60969ebdb910b7365fb1b"
+    },
+    "0x70997970C51812dc3A010C7d01b50e0d17dc79C8": {
+        "voucher": {
+            "redeemer": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+            "stageId": 1,
+            "nonce": 1,
+            "amount": 4
+        },
+        "signature": "0xd4f91bd9326905c2856954200fe2c74a78e520b500480917ad1e3c0fc70c7feb29d37a8fbab594fe7e6c073012f5b5e173e751c43e98b44fb1a1b878b1b9d6601c"
     }
 }

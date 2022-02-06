@@ -5,7 +5,7 @@ import { TemplateNFT__factory } from '../../frontend/src/typechain'
 import { 
   StageInfo, VOUCHER_TYPE, NFTVoucher,
   getTimestamp,
-  INIT_BASE_URI,
+  UNREVEALED_BASE_URI,
   STAGE_1_PRICE,
   STAGE_2_PRICE,
   FINAL_BASE_URI,
@@ -167,7 +167,7 @@ describe("Template NFT", function () {
     assert((await contract.balanceOf(user3.address)).eq(12));
 
     const tokenId = await contract.tokenOfOwnerByIndex(user3.address, 2);
-    assert((await contract.tokenURI(tokenId)) === INIT_BASE_URI + tokenId);
+    assert((await contract.tokenURI(tokenId)) === UNREVEALED_BASE_URI + tokenId);
 
     //////////////////////
     // Settlement

@@ -6,7 +6,7 @@ import { NFTVoucher, VOUCHER_TYPE, CONTRACT_ADDRESS } from "../constant";
 
 //change if change stage
 const stageId = 1;
-//change if resign in the same stage
+//change if re-sign in the same stage
 const nonce = 1;
 
 async function main() {
