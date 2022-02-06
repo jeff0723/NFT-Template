@@ -1,20 +1,18 @@
 import { Button, Card, Layout, Select, Typography } from 'antd';
 import "antd/dist/antd.css";
-import { BigNumber } from 'ethers';
-import { ethers } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
 import React, { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
+import styled from 'styled-components';
 import Account from './components/Account';
+import { DISCORD_LINK, MAX_SUPPLY, MINT_PRICE, START_TIME, TWITTER_LINK } from './constants';
 import { openNotificationWithIcon } from './helpers/notification';
 import { useTemplateNFTContract } from './hooks/useContract';
 import { useActiveWeb3React } from './hooks/web3';
-import { DISCORD_LINK, TWITTER_LINK, MAX_SUPPLY, START_TIME, MINT_PRICE } from './constants'
-import styled from 'styled-components';
-
-import logo from './images/logo.png';
-
 import "./style.css";
 import WHITELIST from './whitelist/whitelist.json';
+
+
 const { Option } = Select;
 
 const { Header, Content } = Layout;

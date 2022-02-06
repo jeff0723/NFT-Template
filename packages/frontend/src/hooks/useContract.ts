@@ -3,7 +3,7 @@ import { TemplateNFT, TemplateNFT__factory} from '../typechain'
 import { useMemo } from 'react'
 import { useWeb3React } from '@web3-react/core';
 import { getContract } from '../utils/getContract'
-import { TEMPLATE_NFT_ADDRESS } from '../constants/address';
+import { TEMPLATE_NFT_ADDRESS } from '../constants';
 export function useContract<T extends Contract = Contract>(
     addressOrAddressMap: string | { [chainId: number]: string } | undefined,
     ABI: any,
