@@ -4,8 +4,11 @@ import { writeFile, readFile } from "fs/promises";
 import { existsSync } from "fs";
 import { NFTVoucher, VOUCHER_TYPE, CONTRACT_ADDRESS } from "../constant";
 
+//change if change stage
 const stageId = 1;
+//change if resign in the same stage
 const nonce = 1;
+
 async function main() {
     const { deployer } = await getNamedAccounts();
     console.log("Singer address:",deployer)

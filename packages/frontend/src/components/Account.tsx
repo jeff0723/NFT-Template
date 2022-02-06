@@ -8,6 +8,8 @@ import { useActiveWeb3React } from '../hooks/web3';
 import { getEllipsisTxt } from '../helpers/formatters'
 import { useMediaQuery } from 'react-responsive'
 import { isMobile } from '../utils/userAgent'
+import { RightOutlined } from '@ant-design/icons'
+
 declare let window: any;
 
 interface Props {
@@ -22,8 +24,10 @@ const styles = {
         fontWeight: "500",
         fontFamily: "Roboto, sans-serif",
         fontSize: "14px",
-        padding: "0 10px",
-        borderRadius: "12px",
+        padding: "0 16px",
+        borderRadius: "16px",
+        background: '#000000',
+        color: '#ffffff'
     },
     modal: {
         borderRadius: "12px",
@@ -61,9 +65,9 @@ const Account = (props: Props) => {
     }
     return (
         <div>
-            <Button style={{ ...styles.button, border: (isTablet ? "none" : "") }} onClick={() => { setModalOpen(true) }}>連接錢包</Button>
+            <Button style={{ ...styles.button, border: (isTablet ? "none" : ""), fontWeight: 'bold' }} onClick={() => { setModalOpen(true) }}>CONNECT  <RightOutlined /></Button>
             <Modal
-                title="連接錢包"
+                title="Connect Wallet"
                 style={styles.modal}
                 visible={isModalOpen}
                 footer={null}
@@ -89,7 +93,7 @@ const Account = (props: Props) => {
                         (isMobile ?
                             <a href="https://metamask.app.link/dapp/www.referendum-nft.com" target="_blank" rel="noreferrer">
                                 <Box>
-                                    <Text>安裝或開啟Metamask</Text>
+                                    <Text>Install or Open Metamask</Text>
                                     <div style={styles.iconWrapper}>
                                         <img src={MetaMaskIcon} alt="Icon" height="24px" width="24px" />
                                     </div>
@@ -97,7 +101,7 @@ const Account = (props: Props) => {
                             </a> :
                             <a href="https://metamask.io" target="_blank" rel="noreferrer">
                                 <Box>
-                                    <Text>安裝Metamask</Text>
+                                    <Text>Install Metamask</Text>
                                     <div style={styles.iconWrapper}>
                                         <img src={MetaMaskIcon} alt="Icon" height="24px" width="24px" />
                                     </div>
