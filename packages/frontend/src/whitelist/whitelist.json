@@ -6,7 +6,7 @@
             "nonce": 1,
             "amount": 5
         },
-        "signature": "0xfca2072fca3b6877a1f883cd3b9abc6b6b185b04a4a36cdd115dbbe845e1c0c72d252ff2312cc3b43dfbc6f3019c1cd92480202bb0981635fd3873e04ff605d41b"
+        "signature": "0x04750ffd567ce9a9797550bee50fdf47a7721e3ecdae84a43f247fa5b6cba8fd5581cb5ab939351684a77372388a6b76b7f4ee01520fece3063d8385b8e5f0391c"
     },
     "0x8dA0F34A0819fE8dbD130050a4059859241dFEfd": {
         "voucher": {
@@ -15,7 +15,7 @@
             "nonce": 1,
             "amount": 3
         },
-        "signature": "0x206ba05baeb4a68547c3f106948f53df886390fbaa614f68abc984c3dae848e177b5d4085cb16cb4d6401fe29d54a44765b01a32014ca2788a192800094bebbb1c"
+        "signature": "0xeaa6500ba4eb283ce413bae786f33bb4048b1c254bdbfdbc37e48b88a2f15e9a4d290abba1245a94e7fb2ebb0647d3ce0f9ee7d8facce307f1065588eca0d0d61b"
     },
     "0xfA254Bc5fe638989BC4A86727293335093A6177e": {
         "voucher": {
@@ -24,7 +24,7 @@
             "nonce": 1,
             "amount": 2
         },
-        "signature": "0x834ddd4777f7cecc56598616f5f95932bce07a4106f307c98dc8077533dc5d090ebd6ff1a970eb573edf0fc50c3392e2e4f629c6685805333cf6a0d93aee06d71b"
+        "signature": "0x58b870f6d7691623db3f66ad1ca3721ca0c8b781affcdf1f7c916581e8a0febf556b7c9a1949940675ed86b30da6765ceaf5c9004a36d7b675957e85898a93811b"
     },
     "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266": {
         "voucher": {
@@ -33,7 +33,7 @@
             "nonce": 1,
             "amount": 1
         },
-        "signature": "0xf36e0e936af9713e93de5e0af6b7f7e4b8ed59b72821463daf4346db3d58f6c21ae57efc664bdd583ed3a51f32a5cacac4da20b868d7f60969ebdb910b7365fb1b"
+        "signature": "0xb3fb03452637aa0110862054e4e3ca5fde6a4df7ad1b2af540c0efe3b19d299c12403a3ece6dfc492206f99e32c37978ebb77999cea9e2d16d0d8b88005e8da31b"
     },
     "0x70997970C51812dc3A010C7d01b50e0d17dc79C8": {
         "voucher": {
@@ -42,6 +42,6 @@
             "nonce": 1,
             "amount": 4
         },
-        "signature": "0xd4f91bd9326905c2856954200fe2c74a78e520b500480917ad1e3c0fc70c7feb29d37a8fbab594fe7e6c073012f5b5e173e751c43e98b44fb1a1b878b1b9d6601c"
+        "signature": "0xf6f6b1d3249b01dcca02a31335ce3c2037d4f4060f75480e6993e49bd76d278450aa2ee2a6cae5685f54e675791d7477f64a7f56157d86234b420832ea23c6891c"
     }
 }

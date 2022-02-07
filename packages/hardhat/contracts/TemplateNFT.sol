@@ -8,6 +8,8 @@ import "@openzeppelin/contracts/utils/cryptography/draft-EIP712.sol";
 import "@openzeppelin/contracts/finance/PaymentSplitter.sol";
 import "./ERC721A.sol";
 
+// import "hardhat/console.sol";
+
 /**
  @title Template NFT 
  @author Jeffrey Lin, Justa Liang
@@ -77,6 +79,7 @@ contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
         uint8 amount
     ) external payable {
         MinterInfo storage minterInfo = _whitelistInfo[_msgSender()];
+        // console.log("signature length:", signature.length);
         // if haven't redeemed then redeem first
         if (voucher.nonce > minterInfo.nonce) {
             // make sure that the signer is authorized to mint NFTs
@@ -85,6 +88,7 @@ contract TemplateNFT is ERC721A, Ownable, PaymentSplitter, EIP712 {
             require(stageInfo.stageId == voucher.stageId, "Stage ID not match");
             // update minter info
             minterInfo.remain = voucher.amount;
+            minterInfo.nonce = voucher.nonce;
         }
 
         // check time
