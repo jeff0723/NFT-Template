@@ -11,7 +11,7 @@ import { useTemplateNFTContract } from './hooks/useContract';
 import { useActiveWeb3React } from './hooks/web3';
 import "./style.css";
 import WHITELIST from './whitelist/whitelist.json';
-
+import logo from './images/logo.png'
 
 const { Option } = Select;
 
@@ -191,7 +191,7 @@ function App() {
           <div style={{ padding: '16px' }}>
             {/* <img src={logo} style={{ width: '150px', height: '100px' }} alt='logo' />
              */}
-            <Text style={{ fontSize: '3.5vh', fontWeight: 'bold' }}>Blackchain</Text>
+            <img src={logo} alt='logo' height='42px' />
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'row', gap: '10px' }}>
