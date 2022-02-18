@@ -6,7 +6,7 @@
             "nonce": 1,
             "amount": 5
         },
-        "signature": "0x62d257a6f587176aef75b83653a56cba9255a589862c73348a81be9fee70ee7e52cd075fab8d48d0de8fbdc562c57b1d13ce113e920ad0522b12709e6e75cfad1b"
+        "signature": "0x8243e76f926bc43ecbf9aa267adffa28f0d62ea8a613c6ffbd2c5b4221290566181d3d51c012ca03304bbaef6b2dd277ec7a3635574a32a423f1e8dca6d18f261b"
     },
     "0x8dA0F34A0819fE8dbD130050a4059859241dFEfd": {
         "voucher": {
@@ -15,7 +15,7 @@
             "nonce": 1,
             "amount": 3
         },
-        "signature": "0x6f801bd953c6bfcba74476087b0a99929ae912a9b3c7090f4277552e9823bea73560bca9238029a046be5c6af89e64db04010fe02391a72dc985e0cc882513811c"
+        "signature": "0x6b6400b18c0dd22a88b21ec56d96e879b8599c9370bba29502890f278b8b52b5250bbb774e2e985c14bbfa5d0dbb2dd8c67d1efa3c569f4f676113b34bc515ee1c"
     },
     "0xfA254Bc5fe638989BC4A86727293335093A6177e": {
         "voucher": {
@@ -24,7 +24,7 @@
             "nonce": 1,
             "amount": 2
         },
-        "signature": "0x8a9c20b9205a4e60ad849851befcdf339d41c6dc4e7321486329ca01ef086ae758f1e605a5b44ece20938211be66facf21f929ee85a8d4c1a3d0f66cdcebc5cf1b"
+        "signature": "0x01b2e169ec1e9b3480c008409508a122cf04731243c2d2d5309b45c4db1e1f777c572a25d5635876d5d150e248a53568d83eb7e7d3394943bcf24a051a080c981b"
     },
     "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266": {
         "voucher": {
@@ -33,15 +33,15 @@
             "nonce": 1,
             "amount": 1
         },
-        "signature": "0x00e9d35765388373386e3f74bc732298db6fc0d06d996f1215b11b897a2d3c161a10e7272c9401f4237acdb0068996c946c80475565506db73135827b33d9f3d1b"
+        "signature": "0x01d92c1bcdabd0a0c58db41fad775a9265372c3fa624e866b666f2c58d7008d34696dee4e972d3283fbc5dd6869faac8f6f1458befbe9f2dfb8b164a898141ae1b"
     },
     "0x70997970C51812dc3A010C7d01b50e0d17dc79C8": {
         "voucher": {
             "redeemer": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
             "stageId": 1,
             "nonce": 1,
-            "amount": 4
+            "amount": 3
         },
-        "signature": "0x78188f4cfdc4d6979325e5ddeaa11dd8c7846e0bf435406b725a7f6acf6d856657d913a1323dc14276551d99b42f948cf2421f6d3396bae4fd724620f1dbeb071b"
+        "signature": "0xf5f1cf27f90403a3893cddb276156c2673bb40c4e062f50a7d903c51e713974b4bd85ad9c1db351c8d9b00078b169f24000444b24e2f3e4f60cd23f5d920f3a81b"
     }
 }
