@@ -1,0 +1,47 @@
+{
+    "0x1BE55EE7E2e7E3ff9fA745f807a9FaCf50538a4d": {
+        "voucher": {
+            "redeemer": "0x1BE55EE7E2e7E3ff9fA745f807a9FaCf50538a4d",
+            "stageId": 1,
+            "nonce": 1,
+            "amount": 5
+        },
+        "signature": "0xd7c65a932b31a5437f9e00212d03924a7ec2a16e5c5defaa6642f53e605a6eb3110d92c821791f9f88f8c0b871b644396b98f644b71863087dfc299f137ba8ac1c"
+    },
+    "0x8dA0F34A0819fE8dbD130050a4059859241dFEfd": {
+        "voucher": {
+            "redeemer": "0x8dA0F34A0819fE8dbD130050a4059859241dFEfd",
+            "stageId": 1,
+            "nonce": 1,
+            "amount": 3
+        },
+        "signature": "0xb797a3f1de990768a0e08c7d1683e930f6767c01ad9e7711f02bc4cd9949973d1bf12795261d5516754eef8db1c1fa6e5bb54443df80ece336f11ecc571c312d1b"
+    },
+    "0xfA254Bc5fe638989BC4A86727293335093A6177e": {
+        "voucher": {
+            "redeemer": "0xfA254Bc5fe638989BC4A86727293335093A6177e",
+            "stageId": 1,
+            "nonce": 1,
+            "amount": 2
+        },
+        "signature": "0x978e56414a1c3eaeb1c15215dab73b67d9ff9599810f32feafb9a2bacc12ae8a7c55e528dc71aee546c0084ec67b7705b1fff32eb30bbb8f2036a583fc4599211b"
+    },
+    "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266": {
+        "voucher": {
+            "redeemer": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+            "stageId": 1,
+            "nonce": 1,
+            "amount": 1
+        },
+        "signature": "0xc330efcc280eaa1c38bff8fa031621a80fbe3972cc2d998f94fe52765553ac534e51d77e8b8b8bdcbd8b13857e77f0e7ed92f92a9e28baa023dd923e55fb62781b"
+    },
+    "0x70997970C51812dc3A010C7d01b50e0d17dc79C8": {
+        "voucher": {
+            "redeemer": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+            "stageId": 1,
+            "nonce": 1,
+            "amount": 4
+        },
+        "signature": "0x9d53dc1e8804393df1859be1eebbbaa43a64d096da031cb8ca40224fef6c8db9037288bcc3e81c4632d8c66facf77fe1fd6611d1de954130b6bdde3d13405ae21b"
+    }
+}

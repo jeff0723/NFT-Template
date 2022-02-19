@@ -36,7 +36,7 @@ describe("Template NFT", function () {
 
     // domain data
     const domainData: TypedDataDomain = {
-      name: "TemplateNFT",
+      name: process.env.NAME,
       version: "1",
       chainId: await getChainId(),
       verifyingContract: deployment.address,

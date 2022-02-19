@@ -51,6 +51,6 @@ export const FINAL_BASE_URI =
 type AddressMap = { [chainId: string]: string };
 export const CONTRACT_ADDRESS: AddressMap = {
   "1": "0x5FbDB2315678afecb367f032d93F642f64180aa3", // TODO
-  "4": "0xaeD3B0a9b395F2316317c817c685B109Affb89C4", // TODO
+  "4": "0x47EC596C581D9354dbCb0E2C00aBe298b51EB32A", // TODO
   "1337": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
 };

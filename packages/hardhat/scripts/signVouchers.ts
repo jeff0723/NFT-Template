@@ -21,7 +21,7 @@ async function main() {
         return;
     }
     const domainData: TypedDataDomain = {
-        name: "TemplateNFT",
+        name: process.env.NAME,
         version: "1",
         chainId: chainId,
         verifyingContract: contractAddr,
@@ -40,9 +40,8 @@ async function main() {
     console.log("voucher count:", sigMap.size);
     if (existsSync("../frontend/src/whitelist/whitelist.json")) {
         await writeFile("../frontend/src/whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
-    } else {
-        await writeFile("./whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
     }
+    await writeFile("./whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
 
 
 }
