@@ -40,9 +40,8 @@ async function main() {
     console.log("voucher count:", sigMap.size);
     if (existsSync("../frontend/src/whitelist/whitelist.json")) {
         await writeFile("../frontend/src/whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
-    } else {
-        await writeFile("./whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
     }
+    await writeFile("./whitelist/whitelist.json", JSON.stringify(Object.fromEntries(sigMap), null, 4));
 
 
 }
