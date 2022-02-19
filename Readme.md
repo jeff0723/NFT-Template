@@ -9,6 +9,5 @@
 3. register environment variables. `cd packages/harhdat && source .env`
 4. modify your contract, then run `yarn hardhat deploy`
 5. copy your whitelist to `whitelist/whitelist.txt`
-6. sign your whitelist `yarn hardhat run scripts/signVouchers.ts` , or `yarn hardhat run scripts/signVouchers.ts --network <YOUR_NETWORK>`
-7. copy whitelist.json to `packages/frontend/src/whitelist`
-8. `yarn start` to start frontend
+6. sign your whitelist `yarn sign-whitelist` , or `yarn sign-whitelist --network <YOUR_NETWORK>`
+7. `yarn start` to start frontend

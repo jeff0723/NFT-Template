@@ -21,7 +21,7 @@ async function main() {
         return;
     }
     const domainData: TypedDataDomain = {
-        name: "TemplateNFT",
+        name: process.env.NAME,
         version: "1",
         chainId: chainId,
         verifyingContract: contractAddr,
