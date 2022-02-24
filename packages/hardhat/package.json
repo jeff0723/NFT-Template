@@ -1,7 +1,7 @@
 {
   "name": "@template-nft/hardhat",
   "version": "1.0.0",
-  "description": "NFT project for renaissance mona lisa IP",
+  "description": "A NFT Boilerplate Template created by Jeffrey Lin",
   "author": "Jeffrey Lin",
   "license": "MIT",
   "devDependencies": {
